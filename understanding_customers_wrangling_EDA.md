@@ -23,7 +23,7 @@ Additional Questions:
 At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
 1. create a folder for your project in a directory that anaconda will be able to see. ben recommended creating all project folders in the root c:\  dir instead of the default c:\users\kpiat
     * i got a permission denied error when i tried to create my first jup nb from c:\   to fix the problem i have to run the anaconda prompt as an administrator (this gets arount the windows UAC security features, allowing you to make changes to the files in your computer's OS —i think)
-2. virtual environment— you may also want to create a virtual environment for your project. by default, when you open the conda prompt, you are in the (base) environment, which has access to all the pkgs, IDEs, etc. that come with your anaconda installation. 
+2. virtual environment— you may also want to create a virtual environment for your project. by default, when you open the conda prompt, you are in the (base) environment, which has access to all the pkgs, IDEs, etc. that come with your anaconda installation.
     * but it's recommended that you don't use the (base) env to do your work for a few reasons.
         * you may need to install packages that didn't come pre-installed with your anaconda installation. and installing those packages could alter the pre-installed packages, which could cause other projects created in and using the base env to break (**verify**)
         * you want to alter/customize some of the pre-installed pkgs for a particular project but you don't want alter every subsequent installation of those pkgs. (**verify** it occurs to me that future installations of altered pkgs would only be altered if pkgs installed into ve are installed from the base environment, as opposed to the conda repo, eg. and i'm not sure that's the case)
@@ -38,7 +38,7 @@ At the beginning of every new project you need to do a few things before creatin
         6. (optional) create jup nb kernel for ve ```ipython kernel install --user --name = nameofenv```
         7. deactivate the ve ```conda deactivate```
         8. re-activate the ve ```activate nameofenv```
-    * with your ve activated, launch jupyter nb ```jupyter notebook``` 
+    * with your ve activated, launch jupyter nb ```jupyter notebook```
 
 ### Jupyter Setup
 
@@ -53,7 +53,7 @@ once jupyter homepage launches in your browser, click New, and select the kernel
 
 ```python
 #import data science pkgs I need
-import pandas as pd 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -66,7 +66,7 @@ df = pd.read_csv('Demographic_Data.csv')
 ```
 
 *Notes:*  
-  
+
  ☼ error fix — first time i ran the code i got a file not found error because the data file was not in the same directory/folder as this jup nb. when i moved the data file into the same dir and re-ran, it worked.
 
 
@@ -168,7 +168,7 @@ df.info()
      4   region    80000 non-null  int64  
     dtypes: float64(1), int64(4)
     memory usage: 3.1 MB
-    
+
 
 *Notes*  
 * 80,000 transactions
@@ -183,15 +183,15 @@ df.info()
 * i can tell all the features have numeric values b/c their dtypes are either int64 (integers) or float64 (real numbers)
 * ***nominal*** — categorical values that don't contain any order (eg. 0=online, 1=instore)
 * ***ordinal*** —categorical values that do have an order, but the intervals between values are not uniform (e.g. ecomomic standing = low, medium, high)
-* ***numerical*** — like ordinal values, but the intervals between values are uniform (e.g. 
+* ***numerical*** — like ordinal values, but the intervals between values are uniform (e.g.
     * 2 types *interval*(has no fixed zero point) and *ratio*(has a fixed zero point)
 * what type of data you're analyzing is important because it partially determines what kind of statistical tests you use (parametric vs. non-parametic tests)
-* i think *in-store* and *region* are nominal variables 
-* i think age, items, and amount are numerical (ratio) variables 
+* i think *in-store* and *region* are nominal variables
+* i think age, items, and amount are numerical (ratio) variables
 * [this](https://pbpython.com/pandas_dtypes.html) website explains pandas data types and why they matter
-               
 
-# Data Wrangling 
+
+# Data Wrangling
 
 Commonly includes:
 * data-cleaning
@@ -208,11 +208,11 @@ which walks through:
      * shows how to drop missing values or fill with mean, median, mode for relevant variable(s)
  * taking care of categorical features
      * turning variables with string values into categorical or ordinal variables by adding number labels to strings
-     * also shows how to create a new categorical variable (e.g. continent) from other categorical variables in the dataset. 
+     * also shows how to create a new categorical variable (e.g. continent) from other categorical variables in the dataset.
      * discusses using OneHotEncoder. But i don't get why.
  * normalization of data set
-     * the goal of normalization is get variables to 
-  
+     * the goal of normalization is get variables to
+
 
 ## Data Cleaning
 
@@ -237,7 +237,7 @@ print(df.isnull().sum())
     amount      0
     region      0
     dtype: int64
-    
+
 
 Notes: the output tells us there is no missing data in this dataset
 * the course links to a page about 6 ways to impute missing data, but it's not clear to me under what circumstances imputation of missing values should be used. i know in academia, there are guidelines about when to use imputation, vs. list-deletion vs. something else. but maybe the standards/rules are different for data analysis in business.
@@ -249,7 +249,7 @@ Notes: the output tells us there is no missing data in this dataset
 
 
 ```python
-#view descriptive statistics of dataset 
+#view descriptive statistics of dataset
 df.describe()
 ```
 
@@ -353,13 +353,13 @@ df.describe()
 
 
 *Notes:*  
-  
+
   ```data.describe()``` generates basic descriptive stats on the dataframe,including central tendency, dispersion, and shape of distribution  
 * in the ( ) you can specify ```(percentiles =, include =, exclude =, datetime_is_numeric =)```  
 
 *Inferences/Observations*
- 
-- *in-store* 
+
+- *in-store*
     * i know from the documentation that 1= in-store purchase, 0 = online purchase
     * it's a nominal variable, all values should be 0 or 1.
     * mean, std are not meaningful with nominal variables
@@ -415,9 +415,9 @@ plt.savefig('blackwell_histogram_subplots.jpeg')
 ```
 
 
-    
+
 ![png](output_23_0.png)
-    
+
 
 
 *Coding Notes*  
@@ -529,9 +529,9 @@ plt.savefig('blackwell_pairplot.jpeg')
 ```
 
 
-    
+
 ![png](output_28_0.png)
-    
+
 
 
 
@@ -552,16 +552,16 @@ sns.displot(
 
 
 
-    
+
 ![png](output_29_1.png)
-    
+
 
 
 ### Correlation
 2 Types
    * Positive Correlation—when A increases, so does B. (0.5-0.7 is slight to high positive correlation, 0.9 - 1 is perfectly positively correlated.  
    * Negative Correlation—when A increases, B decreases.
-   
+
 2 Tests:
    * Pearson Correlation Coefficient—use when testing continuous variables that have a linear relationship.
    * Spearman Correlation Coefficient—use when testing variables with a non-linear relationship
@@ -580,12 +580,12 @@ print(corr_mat)
     items    -0.003897  0.000657  1.000000  0.000384 -0.001904
     amount   -0.085573 -0.282033  0.000384  1.000000  0.403486
     region   -0.133171 -0.235370 -0.001904  0.403486  1.000000
-    
+
 
 *Notes*  
 
 * I don't think the correlation co-efficients for in-store and region are meaningful.
-* There is a slight negative correlation between amount spent per transaction and age, suggesting that as age increases, the amount spent per transaction decreases. But I know from the scatter plot I generated earlier that the negative correlation between age and amount spent doesn't kick in until around age 62-65, when you see a sharp dropoff. Prior to that there doesn't appear to be any correlation between the two variables. 
+* There is a slight negative correlation between amount spent per transaction and age, suggesting that as age increases, the amount spent per transaction decreases. But I know from the scatter plot I generated earlier that the negative correlation between age and amount spent doesn't kick in until around age 62-65, when you see a sharp dropoff. Prior to that there doesn't appear to be any correlation between the two variables.
 
 ### Covariance
 
@@ -602,7 +602,7 @@ print(cov_mat)
     items     -0.004017     0.021270  4.248751       0.570791   -0.004421
     amount   -30.860425 -3196.782841  0.570791  520221.252295  327.874873
     region    -0.075019    -4.167305 -0.004421     327.874873    1.269321
-    
+
 
 ## Visualization Options
 
@@ -622,14 +622,14 @@ plt.title("Amount Spent by Age")
 plt.xlabel('Age')
 plt.ylabel('Amount')
 
-#this command not nec. in jupyter nb, but does supress lines of code appearing in output 
+#this command not nec. in jupyter nb, but does supress lines of code appearing in output
 plt.show()
 ```
 
 
-    
+
 ![png](output_37_0.png)
-    
+
 
 
 *Coding Notes*  
@@ -643,7 +643,7 @@ fig, ax = plt.subplots()
 ax.plot(x, y)
 plt.show()```  
 
-⌂ Learning: You don't need to use ```plt.show()``` in Jupyter notebooks to generate matplotlib visualisation. But including it suppresses several lines of code that would otherwise appear above your graph/plot. 
+⌂ Learning: You don't need to use ```plt.show()``` in Jupyter notebooks to generate matplotlib visualisation. But including it suppresses several lines of code that would otherwise appear above your graph/plot.
 
 ### *Histograms*
 
@@ -672,9 +672,9 @@ plt.show()
 ```
 
 
-    
+
 ![png](output_41_0.png)
-    
+
 
 
 *Coding Notes*  
@@ -708,9 +708,9 @@ plt.show()
 ```
 
 
-    
+
 ![png](output_43_0.png)
-    
+
 
 
 *Notes*  
@@ -718,7 +718,7 @@ plt.show()
 §Insights: you can see more clearly in this graph how percipitously the variation in spending drops off after age 63 or so.  
 
 The [matplotlib](https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.scatter.html)
-documentation for scatter plots shows example code for creating plots with differed colored and sized dots, a legend, and a number of othe features. 
+documentation for scatter plots shows example code for creating plots with differed colored and sized dots, a legend, and a number of othe features.
 
 ### *Boxplots*
 
@@ -743,26 +743,26 @@ plt.show()
 ```
 
 
-    
+
 ![png](output_47_0.png)
-    
+
 
 
 *Notes*  
 
 ☼NameError fix: got NameError first time because I used a capital O instead of 0.  
 
-```plt.boxplot(A, 0, 'gD')``` 
+```plt.boxplot(A, 0, 'gD')```
 * The 0 parameter is determining whether the plot has notches. 0=No, 1=Yes.
 * The 'gD' parameter is determinint the color and shape of the smybol representing outliers.
     * To supress symbols altogether use ```plt.boxplot(A, 0, ' ')```
 * To generate a basic box plot just use ```plt.boxplot(A)```
 * To generate a horizontal box plot use ```plt.boxplot(A, 0, 'rs', 0)```
 * To generate boxplot *without* definining a new object ```plt.boxplot(data['amount'])```
-    
+
 
 ¿*What is the green pill shape at the top representing?*
->it's a representation of the outliers in the dataset. the reason it's an extended shape, instead of individual points, is the fact that there are a group of outliers bunched up at the top. if there was only a single outlier in the dataset, instead of the pill shape there would be a point. 
+>it's a representation of the outliers in the dataset. the reason it's an extended shape, instead of individual points, is the fact that there are a group of outliers bunched up at the top. if there was only a single outlier in the dataset, instead of the pill shape there would be a point.
 
 *Resources*  
 
@@ -771,7 +771,7 @@ plt.show()
 
 # Regional Analysis
 
-In this section I'll use the information about the data I've gathered so far and do some additional analysis to answer Blackwell's questions about regional differences in customer spending. 
+In this section I'll use the information about the data I've gathered so far and do some additional analysis to answer Blackwell's questions about regional differences in customer spending.
 
 ## *Do customers in different regions spend more per transaction?*
 
@@ -850,9 +850,9 @@ In this section I'll use the information about the data I've gathered so far and
 
 
 *Notes*
-* It appears by looking at the avg. amount spent per transaction, that the South spends the least per transaction (about 252) and the East spends the most (about 1284). However, we need to look at the mean and mode as well to check whether those numbers are being skewed by outliers. 
-* All transactions in the North occurred in-store. *This doesn't make sense since Blackwell's stores are in the Southeast. 
-* All transactions in the South region occur online. *This also doesn't make a lot of sense. 
+* It appears by looking at the avg. amount spent per transaction, that the South spends the least per transaction (about 252) and the East spends the most (about 1284). However, we need to look at the mean and mode as well to check whether those numbers are being skewed by outliers.
+* All transactions in the North occurred in-store. *This doesn't make sense since Blackwell's stores are in the Southeast.
+* All transactions in the South region occur online. *This also doesn't make a lot of sense.
 * The average customer in the East  is 15 years younger than the average customer in the South.
 * The avg. number of items purchased in each transaction is 4.5 in all regions.
 
@@ -1005,12 +1005,12 @@ df.groupby('region').std()
 
 
 *Notes*
-* The median amount spent per transaction is significantly lower than the mean amount spent per transaction in the North and West regions, suggesting there are some expensive outlier transactions in those regions. 
+* The median amount spent per transaction is significantly lower than the mean amount spent per transaction in the North and West regions, suggesting there are some expensive outlier transactions in those regions.
 * The relatively small std in amount spent per transaction in the East region suggests most purchases are in a small range around the mean of 250.
 
 
 ```python
-#add a new variable to df to map region numbers to their names 
+#add a new variable to df to map region numbers to their names
 #and temporarily set all = to North
 df['region_name']='North'
 df.head()
@@ -1210,15 +1210,15 @@ plt.savefig('blackwell_regional_spending_violin.jpeg')
 ```
 
 
-    
+
 ![png](output_60_0.png)
-    
+
 
 
 
 ```python
 #create box plot of amount variable in each region
-abr_box=sns.catplot(x = 'region_name', y = 'amount', data = df, 
+abr_box=sns.catplot(x = 'region_name', y = 'amount', data = df,
                     kind = 'box', aspect = 1)
 abr_box.set_xticklabels(rotation = 45)
 abr_box.fig.suptitle('Regional Spending')
@@ -1230,16 +1230,16 @@ plt.savefig('blackwell_regional_spending_boxplot.jpeg')
 ```
 
 
-    
+
 ![png](output_61_0.png)
-    
+
 
 
 ***Summary of Findings***  
 
 *Are there regional differences in spending per transaction?*  
 
-Short answer:YES. A quick look at the average amount spent in each region reveals that the Southern region spends the least (about $252.00$). Although it looks like the Eastern region spends the most per transaction (about $1284), further investigation reveals that number is heavily skewed by several outlier transactions. When the outliers are left aside, we can see that typical spendintg in the Eastern and Northern regions are very similar. We can also see that customers in the Western region typically spend the most. One final thing to note is that the amount spent per transaction in the Southern region spans a noteably smaller range than the other three areas, and is concentrated at the low end. 
+Short answer:YES. A quick look at the average amount spent in each region reveals that the Southern region spends the least (about $252.00$). Although it looks like the Eastern region spends the most per transaction (about $1284), further investigation reveals that number is heavily skewed by several outlier transactions. When the outliers are left aside, we can see that typical spendintg in the Eastern and Northern regions are very similar. We can also see that customers in the Western region typically spend the most. One final thing to note is that the amount spent per transaction in the Southern region spans a noteably smaller range than the other three areas, and is concentrated at the low end.
 
 
 ---
@@ -1271,7 +1271,7 @@ plt.savefig('blackwell_revenue_by_region_hist.jpeg')
 """
 Notes
 
-i keep making bar charts when they don't make any sense. 
+i keep making bar charts when they don't make any sense.
 in the above chart i wanted to see how much spending was happening in each region. but the above bar chart does not show that. what is the y-axis representing?
 what i want is a pie chart showing the percent of total spending that occurs in each region.
 steps:
@@ -1290,9 +1290,9 @@ then create a pie chart
 
 
 
-    
+
 ![png](output_64_1.png)
-    
+
 
 
 
@@ -1307,7 +1307,7 @@ print(robsum)
     2              0  1131842   90229  5.040442e+06
     3          10999   821645   80892  1.652345e+07
     4          12994  1007098  117044  3.336699e+07
-    
+
 
 
 ```python
@@ -1316,7 +1316,7 @@ print(amountotal)
 ```
 
     66848505.79050001
-    
+
 
 
 ```python
@@ -1337,9 +1337,9 @@ plt.savefig('blackwell_revenue_byregion_pie.jpeg')
 ```
 
 
-    
+
 ![png](output_67_0.png)
-    
+
 
 
 
@@ -1506,8 +1506,8 @@ df.groupby('in-store').describe()['amount']
 
 
 ```python
-#revenue online vs. in-store by region 
-oir = sns.catplot(data=df, kind='box', 
+#revenue online vs. in-store by region
+oir = sns.catplot(data=df, kind='box',
                   x='region_name', y='amount', hue='in-store', height=6)
 oir.despine(left=True)
 #oir.title("Online vs. In-Store Spending by Region")<--doesn't work
@@ -1521,14 +1521,14 @@ oir.savefig('oir_plot.png')
 ```
 
 
-    
+
 ![png](output_72_0.png)
-    
+
 
 
 ***Summary of findings***
 
-* As you can see in the above plot, the Southern region has **only online** sales, and the Northern region has **no online** sales. This makes me wonder whether the data has been corrupted. But assuming the data is sound, the complete lack of online sales in the South presents a big opportunity to establish and grow Blackwell's online sales in the region. 
+* As you can see in the above plot, the Southern region has **only online** sales, and the Northern region has **no online** sales. This makes me wonder whether the data has been corrupted. But assuming the data is sound, the complete lack of online sales in the South presents a big opportunity to establish and grow Blackwell's online sales in the region.
 * Something else we can see in the above graph is that online sales account for all the high dollar transactions. Almost all the sales above $2,100.00$ are online transactions. This suggests two possible stategies (or a combination of the two) to improve Blackwell's online sales: deploy a strategy aimed at growing the high-dollar purchases that currently only take place online. (2) compare the low dollar purchases in-store with low dollar purchases online to see if there are any significant differences to exploit.
 
 # Age Analysis
@@ -1536,7 +1536,7 @@ oir.savefig('oir_plot.png')
 ## *Create Categorical Age Variables*
 
 * *Discretization* is the process of taking a continuous variable, like age or weight, that could (theoretically) take on any value and putting it into discreet bins (e.g. below 100 lbs, between 140-160, over 200 lbs.)
-     * *when you discretize data, don't you need to make sure the bins you create are the same size (i.e.cover the same interval).so the resulting variable will be ordinal instead of nominal, and thus it is appropriate to use various types of statistical tests?* 
+     * *when you discretize data, don't you need to make sure the bins you create are the same size (i.e.cover the same interval).so the resulting variable will be ordinal instead of nominal, and thus it is appropriate to use various types of statistical tests?*
      * [this](https://s3.amazonaws.com/gbstool/courses/1094/docs/An%20Introduction%20to%20Discretization%20Techniques%20for%20Data%20Scientists.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201023T205053Z&X-Amz-SignedHeaders=host&X-Amz-Expires=36900&X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20201023%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4e9e02e0403840c946cd9a5a9fe5270c8146878715dcdb9853fa908ee0821602) is the explainer article linked in the course, it contains the pkgs and commands needed to do each kind of discretization.
 * ***why discretization is important***
     * often results are *more meaningful and easier to understand* when the data has been binned into a smaller number of categories that have been thoughtfully constructed to fit the question we are trying to answer. (e.g. you might care about generational differences in attitudes, so you could bin observations by age into groups corresponding to baby boomers, millenials, gen z, etc.)
@@ -1546,7 +1546,7 @@ oir.savefig('oir_plot.png')
     * *equal width* — separate all values into 'N' number of bins, each having the same width (i.e. span of values)
     * *equal frequency* separate the values in 'N' number of bins, each containing the same number of observations.
     * *K-means* — apply k-means clustering to the continuous variable. i don't know what this means
-    * *decision-trees* — 
+    * *decision-trees* —
 
 
 ```python
@@ -1755,7 +1755,7 @@ df.head()
 
 
 ```python
-ca = sns.countplot(data=df, 
+ca = sns.countplot(data=df,
                   x='region_name', y=None, hue='young')
 ca.set(xlabel='Region', ylabel='Count')
 ca.legend().set_title('')
@@ -1766,9 +1766,9 @@ fig.savefig('pic.png')
 ```
 
 
-    
+
 ![png](output_78_0.png)
-    
+
 
 
 *Notes*
@@ -1777,8 +1777,8 @@ fig.savefig('pic.png')
 
 
 ```python
-gen_plot = sns.catplot(data=df, 
-                  x='region_name', y=None, hue='gen', kind='count', 
+gen_plot = sns.catplot(data=df,
+                  x='region_name', y=None, hue='gen', kind='count',
                       height=4, aspect=1)
 gen_plot.set(xlabel='Region', ylabel='Count',
             title='Regional Transactions by Age Group')
@@ -1798,9 +1798,9 @@ plt.savefig('blackwell_generational_spending_byregion.jpeg')
 ```
 
 
-    
+
 ![png](output_80_0.png)
-    
+
 
 
 ***Summary of findings***
@@ -1831,9 +1831,9 @@ sns.displot(
 
 
 
-    
+
 ![png](output_83_1.png)
-    
+
 
 
 ## *Do customers of different ages differ in their spending?*
@@ -1841,7 +1841,7 @@ sns.displot(
 
 ```python
 #violin plot of spending by customers under 65 and 65+ in each region
-car = sns.catplot(data=df, kind='violin', 
+car = sns.catplot(data=df, kind='violin',
                   x='region_name', y='amount', hue='young',
                   palette='rocket', legend_out=True, ci = None)
 car.despine(left=True)
@@ -1856,9 +1856,9 @@ car.savefig("customerbyregion.png",
 ```
 
 
-    
+
 ![png](output_85_0.png)
-    
+
 
 
 
@@ -1891,16 +1891,16 @@ print(gen_mean)
                 Gen X (40-55)       47.407644  4.504028  1251.748461
                 Boomer (56-74)      59.264597  4.491659  1545.107915
                 Silent Gen (75-95)        NaN       NaN          NaN
-    
+
 
     <ipython-input-40-2efe97d6df6e>:2: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
       gen_mean=df.groupby(['region_name', 'gen'])['age', 'items', 'amount'].mean()
-    
+
 
 
 ```python
 gen_spending_plot = sns.catplot(data=df,
-                  x='region_name', y='amount', hue='gen', kind='box', 
+                  x='region_name', y='amount', hue='gen', kind='box',
                       height=4, aspect=1)
 gen_spending_plot.set_xticklabels(rotation=45)
 gen_spending_plot.legend.set_title('')
@@ -1911,9 +1911,9 @@ gen_spending_plot.savefig('gen_spending_plot.png')
 ```
 
 
-    
+
 ![png](output_87_0.png)
-    
+
 
 
 
@@ -1946,16 +1946,16 @@ print(gen_sum)
                 Gen X (40-55)       45842  1.274030e+07
                 Boomer (56-74)       9693  3.334343e+06
                 Silent Gen (75-95)      0  0.000000e+00
-    
+
 
     <ipython-input-42-e02cd5cdffab>:2: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
       gen_sum=df.groupby(['region_name', 'gen'])['items', 'amount'].sum()
-    
+
 
 
 ```python
 gen_spending_violin = sns.catplot(data=df,
-                  x='region_name', y='amount', hue='gen', kind='violin', 
+                  x='region_name', y='amount', hue='gen', kind='violin',
                       height=8, aspect=2)
 gen_spending_violin.set(xlabel='Region', ylabel='Amount Spent')
 gen_spending_violin.fig.suptitle('Spending by Generation', fontsize = 20)
@@ -1965,9 +1965,9 @@ plt.savefig("blackwell_spending_by_generation_violin.jpeg")
 ```
 
 
-    
+
 ![png](output_89_0.png)
-    
+
 
 
 
@@ -1976,15 +1976,15 @@ ageamount =sns.scatterplot(data=df, x='amount',y='age')
 ```
 
 
-    
+
 ![png](output_90_0.png)
-    
+
 
 
 
 ```python
 gen_spending_boxen = sns.catplot(data=df,
-                  x='region_name', y='amount', hue='gen', kind='boxen', 
+                  x='region_name', y='amount', hue='gen', kind='boxen',
                       height=6, aspect=2)
 gen_spending_boxen.set(xlabel='Region', ylabel='Amount Spent',
             title='Spending by Age Group')
@@ -1998,9 +1998,9 @@ gen_spending_boxen.set(xlabel='Region', ylabel='Amount Spent',
 
 
 
-    
+
 ![png](output_91_1.png)
-    
+
 
 
 
@@ -2118,22 +2118,22 @@ df_grouped_rg.sort_values(by ='age', ascending=False)
     <ipython-input-54-d51d35db1c75> in <module>
           1 #sort by age the df grouped by region
     ----> 2 df_grouped_rg.sort_values(by ='age', ascending=False)
-    
+
 
     ~\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py in __getattr__(self, attr)
         750             return self[attr]
-        751 
+        751
     --> 752         raise AttributeError(
         753             f"'{type(self).__name__}' object has no attribute '{attr}'"
         754         )
-    
+
 
     AttributeError: 'DataFrameGroupBy' object has no attribute 'sort_values'
 
 
 
 ```python
-#sort df by region then by age 
+#sort df by region then by age
 df.sort_values(by=['region', 'age'])
 ```
 
@@ -2313,12 +2313,12 @@ print(corr_mat)
     items    -0.003897  0.000657  1.000000  0.000384 -0.001904
     amount   -0.085573 -0.282033  0.000384  1.000000  0.403486
     region   -0.133171 -0.235370 -0.001904  0.403486  1.000000
-    
+
 
 
 ```python
-#amount by item 
-item_amount = sns.swarmplot(data=df, 
+#amount by item
+item_amount = sns.swarmplot(data=df,
                   x='items', y='amount', hue='in-store', palette='dark')
 item_amount.despine(left=True)
 item_amount.set_xticklabels( rotation=45)
@@ -2328,7 +2328,7 @@ item_amount.legend.set_title('')
 
     C:\Users\kpiat\anaconda3\lib\site-packages\seaborn\categorical.py:1296: UserWarning: 95.2% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
       warnings.warn(msg, UserWarning)
-    
+
 
 
     ---------------------------------------------------------------------------
@@ -2337,27 +2337,27 @@ item_amount.legend.set_title('')
 
     <ipython-input-56-8c67b4d566fc> in <module>
           1 #amount by item
-    ----> 2 item_amount = sns.swarmplot(data=df, 
+    ----> 2 item_amount = sns.swarmplot(data=df,
           3                   x='items', y='amount', hue='in-store', palette='dark')
           4 item_amount.despine(left=True)
           5 item_amount.set_xticklabels( rotation=45)
-    
+
 
     ~\anaconda3\lib\site-packages\seaborn\_decorators.py in inner_f(*args, **kwargs)
          44             )
          45         kwargs.update({k: arg for k, arg in zip(sig.parameters, args)})
     ---> 46         return f(**kwargs)
          47     return inner_f
-         48 
-    
+         48
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in swarmplot(x, y, hue, data, order, hue_order, dodge, orient, color, palette, size, edgecolor, linewidth, ax, **kwargs)
        3014                        linewidth=linewidth))
-       3015 
+       3015
     -> 3016     plotter.plot(ax, kwargs)
        3017     return ax
-       3018 
-    
+       3018
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in plot(self, ax, kws)
        1418     def plot(self, ax, kws):
@@ -2365,47 +2365,47 @@ item_amount.legend.set_title('')
     -> 1420         self.draw_swarmplot(ax, kws)
        1421         self.add_legend_data(ax)
        1422         self.annotate_axes(ax)
-    
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in draw_swarmplot(self, ax, kws)
        1414         for center, swarm in zip(centers, swarms):
        1415             if swarm.get_offsets().size:
     -> 1416                 self.swarm_points(ax, swarm, center, width, s, **kws)
-       1417 
+       1417
        1418     def plot(self, ax, kws):
-    
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in swarm_points(self, ax, points, center, width, s, **kws)
-       1316 
+       1316
        1317         # Do the beeswarm in point coordinates
     -> 1318         new_xy = self.beeswarm(orig_xy, d)
-       1319 
+       1319
        1320         # Transform the point coordinates back to data coordinates
-    
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in beeswarm(self, orig_xy, d)
-       1268 
+       1268
        1269             # Find the first candidate that does not overlap any neighbours
     -> 1270             new_xy_i = self.first_non_overlapping_candidate(candidates,
        1271                                                             neighbors, d)
-       1272 
-    
+       1272
+
 
     ~\anaconda3\lib\site-packages\seaborn\categorical.py in first_non_overlapping_candidate(self, candidates, neighbors, d)
        1227             dy = neighbors_y - y_i
-       1228 
+       1228
     -> 1229             sq_distances = np.power(dx, 2.0) + np.power(dy, 2.0)
-       1230 
+       1230
        1231             # good candidate does not overlap any of neighbors
-    
-
-    KeyboardInterrupt: 
 
 
+    KeyboardInterrupt:
 
-    
+
+
+
 ![png](output_98_2.png)
-    
+
 
 
 
